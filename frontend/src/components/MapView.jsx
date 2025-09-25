@@ -1,11 +1,23 @@
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
-const MapView = () => {
+// Composant pour centrer la carte sur un pays
+function FlyToCountry({ countryStats, selectedCountry }) {
+  const map = useMap();
+  // Cherche le pays sélectionné
+  const country = countryStats.find(c => c.country === selectedCountry);
+  // Centre et zoom si trouvé
+  if (country && country.lat && country.long) {
+    map.flyTo([country.lat, country.long], 5, { duration: 1.2 });
+  }
+  return null;
+}
+
+const MapView = ({ onCountrySelect, selectedCountry }) => {
   const [countryStats, setCountryStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,10 +64,16 @@ const MapView = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/* Ajoute le composant de recentrage */}
+        <FlyToCountry countryStats={countryStats} selectedCountry={selectedCountry} />
         {!loading && !error && countryStats.map((c, idx) => (
           (c.lat && c.long) ? (
             <>
-              <Marker key={idx} position={[c.lat, c.long]} icon={getMarkerIcon(c.confirmed)}>
+              <Marker key={idx} position={[c.lat, c.long]} icon={getMarkerIcon(c.confirmed)}
+                eventHandlers={onCountrySelect ? {
+                  click: () => onCountrySelect(c.country)
+                } : {}}
+              >
                 <Popup>
                   <strong>{c.country}</strong><br />
                   Confirmed: {c.confirmed.toLocaleString()}<br />

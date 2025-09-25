@@ -285,10 +285,11 @@ function MainContent({ style }) {
         </div>
         
         {/* Leaflet Map */}
-        <MapView />
+        <MapView onCountrySelect={setSelectedCountry} selectedCountry={selectedCountry} />
       </div>
     </main>
   );
 }
+
 
 export default MainContent;
