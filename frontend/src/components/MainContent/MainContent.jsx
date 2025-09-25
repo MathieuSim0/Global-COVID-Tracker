@@ -4,6 +4,7 @@ import GlobalStats from '../GlobalStats';
 import CountrySelector from '../CountrySelector';
 import { fetchCountries, fetchCountryData, formatNumber, extractChartData } from '../../utils/dataUtils';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import MapView from '../MapView';
 
 function MainContent({ style }) {
   const [covidData, setCovidData] = useState({
@@ -283,19 +284,8 @@ function MainContent({ style }) {
           )}
         </div>
         
-        {/* Map placeholder */}
-        <div className="placeholder-container map-placeholder">
-          <div className="placeholder-content">
-            <svg className="placeholder-icon" width="64" height="64" viewBox="0 0 24 24" fill="var(--danger-color)">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            <h3>COVID-19 Global Map</h3>
-            <p className="placeholder-text">Interactive map will be displayed here</p>
-            <button className="btn-primary">
-              Load Map Data
-            </button>
-          </div>
-        </div>
+        {/* Leaflet Map */}
+        <MapView />
       </div>
     </main>
   );
