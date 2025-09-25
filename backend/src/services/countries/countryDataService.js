@@ -185,24 +185,54 @@ class CountryDataService {
    */
   async getCountryData(country) {
     try {
+      // Dictionnaire de normalisation des noms de pays (doit être le même que plus haut)
+      const countryNameMap = {
+        'Cabo Verde': 'Cape Verde',
+        'Ivory Coast': 'Côte d’Ivoire',
+        "Cote d'Ivoire": 'Côte d’Ivoire',
+        'Czechia': 'Czech Republic',
+        'Korea, South': 'South Korea',
+        'US': 'United States',
+        'Mainland China': 'China',
+        'Taiwan*': 'Taiwan',
+        'Burma': 'Myanmar',
+        'Holy See': 'Vatican City',
+        'West Bank and Gaza': 'Palestine',
+        'Republic of the Congo': 'Congo (Brazzaville)',
+        'Congo (Kinshasa)': 'Democratic Republic of the Congo',
+        'Congo (Brazzaville)': 'Republic of the Congo',
+        'Timor-Leste': 'East Timor',
+        'Bahamas, The': 'Bahamas',
+        'Gambia, The': 'Gambia',
+        'The Bahamas': 'Bahamas',
+        'The Gambia': 'Gambia',
+        // Ajoute d'autres synonymes si besoin
+      };
+      // Normalise le nom du pays demandé
+      let normalizedCountry = countryNameMap[country] || country;
       const allData = await this.loadAllData();
-      
       // Cas spécial pour les données globales
-      if (country === 'Global') {
+      if (normalizedCountry === 'Global') {
         return this.calculateGlobalData(allData);
       }
-
       // Filtrer les données pour le pays spécifié dans chaque jeu de données
-      const confirmedData = allData.confirmed.filter(row => row['Country/Region'] === country);
-      const deathsData = allData.deaths.filter(row => row['Country/Region'] === country);
-      const recoveredData = allData.recovered.filter(row => row['Country/Region'] === country);
-      
+      const confirmedData = allData.confirmed.filter(row => {
+        let rowCountry = countryNameMap[row['Country/Region']] || row['Country/Region'];
+        return rowCountry === normalizedCountry;
+      });
+      const deathsData = allData.deaths.filter(row => {
+        let rowCountry = countryNameMap[row['Country/Region']] || row['Country/Region'];
+        return rowCountry === normalizedCountry;
+      });
+      const recoveredData = allData.recovered.filter(row => {
+        let rowCountry = countryNameMap[row['Country/Region']] || row['Country/Region'];
+        return rowCountry === normalizedCountry;
+      });
       if (confirmedData.length === 0) {
         throw new Error(`No data found for country: ${country}`);
       }
-
       // Traiter les données pour obtenir les totaux et l'évolution
-      return this.processCountryData(country, confirmedData, deathsData, recoveredData);
+      return this.processCountryData(normalizedCountry, confirmedData, deathsData, recoveredData);
     } catch (error) {
       throw error;
     }

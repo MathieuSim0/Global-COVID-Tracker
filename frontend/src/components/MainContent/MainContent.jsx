@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './MainContent.css';
-import GlobalStats from '../GlobalStats';
 import CountrySelector from '../CountrySelector';
 import { fetchCountries, fetchCountryData, formatNumber, extractChartData } from '../../utils/dataUtils';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -56,7 +55,7 @@ function MainContent({ style }) {
         setDataError(null); // Réinitialiser l'erreur à chaque nouvelle requête
         
         const data = await fetchCountryData(selectedCountry);
-        
+        setDataError(null); // Réinitialise l'erreur dès qu'on a des données valides
         // Mettre à jour les données avec les valeurs reçues
         setCovidData({
           confirmed: data.confirmed || 0,
@@ -76,13 +75,23 @@ function MainContent({ style }) {
         }
       } catch (err) {
         console.error(`Error fetching data for ${selectedCountry}:`, err);
-        setDataError(`Failed to load data for ${selectedCountry}. Please try again later.`);
+        // Ne pas setter d'erreur pour Global ou si err.message est vide/undefined
+        if (selectedCountry !== 'Global' && err && err.message) {
+          setDataError(`Failed to load data for ${selectedCountry}. Please try again later.`);
+        } else {
+          setDataError(null);
+        }
       } finally {
         setIsDataLoading(false);
       }
     };
     
     loadCountryData();
+  }, [selectedCountry]);
+  
+  // Réinitialise l'erreur à chaque changement de pays
+  useEffect(() => {
+    setDataError(null);
   }, [selectedCountry]);
   
   const handleCountrySelect = (country) => {
@@ -104,8 +113,6 @@ function MainContent({ style }) {
             : `COVID-19 Dashboard: ${selectedCountry}`}
         </h1>
         
-        {selectedCountry === 'Global' && <GlobalStats />}
-        
         {/* Country selector */}
         <CountrySelector
           countries={countries}
@@ -117,7 +124,7 @@ function MainContent({ style }) {
         
         {/* Stats cards */}
         <div className="stats-grid">
-          {dataError && (
+          {dataError && (!covidData || !covidData.confirmed) && (
             <div className="data-error-message">{dataError}</div>
           )}
           
