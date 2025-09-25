@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './MainContent.css';
 import CountrySelector from '../CountrySelector';
-import { fetchCountries, fetchCountryData, formatNumber, extractChartData } from '../../utils/dataUtils';
+import { fetchCountries, fetchCountryData, formatNumber, extractChartData, mergeTimeseries } from '../../utils/dataUtils';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import MapView from '../MapView';
 
@@ -226,7 +226,7 @@ function MainContent({ style }) {
               
               <ResponsiveContainer width="100%" height={400}>
                 <LineChart
-                  data={chartData?.[chartType === 'all' ? 'confirmed' : chartType] || []}
+                  data={chartType === 'all' ? mergeTimeseries(chartData) : chartData?.[chartType] || []}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
@@ -237,52 +237,53 @@ function MainContent({ style }) {
                       return `${date.getMonth() + 1}/${date.getDate()}`;
                     }}
                   />
-                  <YAxis />
+                  <YAxis yAxisId="left" />
+                  {chartType === 'all' && <YAxis yAxisId="right" orientation="right" />}
                   <Tooltip
-                    formatter={(value) => [formatNumber(value), "Cases"]}
+                    formatter={(value, name) => [formatNumber(value), name]}
                     labelFormatter={(date) => new Date(date).toLocaleDateString()}
                   />
                   <Legend />
-                  
                   {/* Display based on chart type selection */}
                   {(chartType === 'confirmed' || chartType === 'all') && chartData?.confirmed && (
                     <Line
                       type="monotone"
-                      dataKey="value"
+                      dataKey={chartType === 'all' ? 'confirmed' : 'value'}
                       name="Confirmed Cases"
                       stroke="#0078b4"
                       activeDot={{ r: 6 }}
                       strokeWidth={2}
-                      data={chartData.confirmed}
+                      data={chartType === 'all' ? undefined : chartData.confirmed}
                       isAnimationActive={true}
+                      yAxisId="left"
                     />
                   )}
-                  
                   {/* Show Deaths line */}
                   {(chartType === 'deaths' || chartType === 'all') && chartData?.deaths && (
                     <Line
                       type="monotone"
-                      dataKey="value"
+                      dataKey={chartType === 'all' ? 'deaths' : 'value'}
                       name="Deaths"
                       stroke="#e53e3e"
                       activeDot={{ r: 6 }}
                       strokeWidth={2}
-                      data={chartData.deaths}
+                      data={chartType === 'all' ? undefined : chartData.deaths}
                       isAnimationActive={true}
+                      yAxisId={chartType === 'all' ? 'right' : 'left'}
                     />
                   )}
-                  
                   {/* Show Recovered line */}
                   {(chartType === 'recovered' || chartType === 'all') && chartData?.recovered && (
                     <Line
                       type="monotone"
-                      dataKey="value"
+                      dataKey={chartType === 'all' ? 'recovered' : 'value'}
                       name="Recovered"
                       stroke="#38a169"
                       activeDot={{ r: 6 }}
                       strokeWidth={2}
-                      data={chartData.recovered}
+                      data={chartType === 'all' ? undefined : chartData.recovered}
                       isAnimationActive={true}
+                      yAxisId={chartType === 'all' ? 'right' : 'left'}
                     />
                   )}
                 </LineChart>

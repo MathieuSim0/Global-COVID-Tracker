@@ -109,3 +109,35 @@ export const extractChartData = (timeseriesData) => {
     ]
   };
 };
+
+/**
+ * Fusionne les séries temporelles confirmed, deaths, recovered en un seul tableau pour la chart All
+ * @param {Object} timeseries - { confirmed: [], deaths: [], recovered: [] }
+ * @returns {Array} [{ date, confirmed, deaths, recovered }]
+ */
+export function mergeTimeseries(timeseries) {
+  if (!timeseries || !timeseries.confirmed) return [];
+  const byDate = {};
+  timeseries.confirmed.forEach(pt => {
+    byDate[pt.date] = { date: pt.date, confirmed: pt.value };
+  });
+  if (timeseries.deaths) {
+    timeseries.deaths.forEach(pt => {
+      if (!byDate[pt.date]) byDate[pt.date] = { date: pt.date };
+      byDate[pt.date].deaths = pt.value;
+    });
+  }
+  if (timeseries.recovered) {
+    timeseries.recovered.forEach(pt => {
+      if (!byDate[pt.date]) byDate[pt.date] = { date: pt.date };
+      byDate[pt.date].recovered = pt.value;
+    });
+  }
+  // Remplit les valeurs manquantes à 0
+  return Object.values(byDate).map(obj => ({
+    date: obj.date,
+    confirmed: obj.confirmed || 0,
+    deaths: obj.deaths || 0,
+    recovered: obj.recovered || 0
+  }));
+}
