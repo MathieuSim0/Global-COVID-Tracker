@@ -1,3 +1,26 @@
+    // Dictionnaire de normalisation des noms de pays
+    const countryNameMap = {
+      'Cabo Verde': 'Cape Verde',
+      'Ivory Coast': 'Côte d’Ivoire',
+  "Cote d'Ivoire": 'Côte d’Ivoire',
+      'Czechia': 'Czech Republic',
+      'Korea, South': 'South Korea',
+      'US': 'United States',
+      'Mainland China': 'China',
+      'Taiwan*': 'Taiwan',
+      'Burma': 'Myanmar',
+      'Holy See': 'Vatican City',
+      'West Bank and Gaza': 'Palestine',
+      'Republic of the Congo': 'Congo (Brazzaville)',
+      'Congo (Kinshasa)': 'Democratic Republic of the Congo',
+      'Congo (Brazzaville)': 'Republic of the Congo',
+      'Timor-Leste': 'East Timor',
+      'Bahamas, The': 'Bahamas',
+      'Gambia, The': 'Gambia',
+      'The Bahamas': 'Bahamas',
+      'The Gambia': 'Gambia',
+      // Ajoute d'autres synonymes si besoin
+    };
 const fs = require('fs');
 const path = require('path');
 const csv = require('csv-parser');
@@ -6,6 +29,89 @@ const csv = require('csv-parser');
  * Service pour extraire et traiter les données COVID-19 par pays
  */
 class CountryDataService {
+  /**
+   * Get all countries with coordinates and latest stats for map markers
+   * @returns {Promise<Array>} Array of { country, lat, long, confirmed, deaths, recovered }
+   */
+  async getAllCountriesStats() {
+    const allData = await this.loadAllData();
+  // Group by country
+    // Nouvelle logique :
+    // 1. On regroupe toutes les lignes par pays
+    const grouped = {};
+    allData.confirmed.forEach(row => {
+      let country = row['Country/Region'];
+      // Normalise le nom si présent dans le mapping
+      if (countryNameMap[country]) country = countryNameMap[country];
+      if (!grouped[country]) grouped[country] = [];
+      grouped[country].push(row);
+    });
+
+    let countryMap = {};
+    Object.entries(grouped).forEach(([country, rows]) => {
+      // Coordonnées fixes pour certains pays
+      const fixedCoords = {
+        'France': { lat: 46.603354, long: 1.888334 }, // centre France métropolitaine
+        'United Kingdom': { lat: 54.7023545, long: -3.2765753 }, // centre UK
+        'Netherlands': { lat: 52.132633, long: 5.291266 }, // centre Pays-Bas
+        // Ajouter d'autres pays si besoin
+      };
+      const mainRow = rows.find(r => !r['Province/State']);
+      if (mainRow) {
+        // Utilise uniquement la ligne principale
+        const dateCols = Object.keys(mainRow).filter(h => /\d+\/\d+\/\d+/.test(h));
+        const lastDate = dateCols[dateCols.length - 1];
+        countryMap[country] = {
+          country,
+          lat: fixedCoords[country]?.lat ?? parseFloat(mainRow['Lat'] || 0),
+          long: fixedCoords[country]?.long ?? parseFloat(mainRow['Long'] || 0),
+          confirmed: parseInt(mainRow[lastDate] || 0, 10),
+          deaths: 0,
+          recovered: 0
+        };
+      } else {
+        // Sinon, somme/moyenne sur toutes les lignes
+        let latSum = 0, longSum = 0, count = 0, confirmed = 0;
+        rows.forEach(row => {
+          const dateCols = Object.keys(row).filter(h => /\d+\/\d+\/\d+/.test(h));
+          const lastDate = dateCols[dateCols.length - 1];
+          confirmed += parseInt(row[lastDate] || 0, 10);
+          latSum += parseFloat(row['Lat'] || 0);
+          longSum += parseFloat(row['Long'] || 0);
+          count++;
+        });
+        countryMap[country] = {
+          country,
+          lat: fixedCoords[country]?.lat ?? (count ? latSum / count : 0),
+          long: fixedCoords[country]?.long ?? (count ? longSum / count : 0),
+          confirmed,
+          deaths: 0,
+          recovered: 0
+        };
+      }
+    });
+    // Add deaths and recovered
+    allData.deaths.forEach(row => {
+      let country = row['Country/Region'];
+      if (countryNameMap[country]) country = countryNameMap[country];
+      const dateCols = Object.keys(row).filter(h => /\d+\/\d+\/\d+/.test(h));
+      const lastDate = dateCols[dateCols.length - 1];
+      if (countryMap[country]) {
+        countryMap[country].deaths += parseInt(row[lastDate] || 0, 10);
+      }
+    });
+    allData.recovered.forEach(row => {
+      let country = row['Country/Region'];
+      if (countryNameMap[country]) country = countryNameMap[country];
+      const dateCols = Object.keys(row).filter(h => /\d+\/\d+\/\d+/.test(h));
+      const lastDate = dateCols[dateCols.length - 1];
+      if (countryMap[country]) {
+        countryMap[country].recovered += parseInt(row[lastDate] || 0, 10);
+      }
+    });
+    // Build result array
+    return Object.values(countryMap);
+  }
   constructor() {
     this.basePath = path.resolve(__dirname, '../../../../COVID-19-master/archived_data/archived_time_series');
     this.confirmedPath = path.join(this.basePath, 'time_series_19-covid-Confirmed_archived_0325.csv');
