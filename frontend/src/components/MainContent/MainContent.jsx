@@ -109,8 +109,8 @@ function MainContent({ style }) {
         {/* Dashboard Title - Updates with selected country */}
         <h1 className="page-title">
           {selectedCountry === 'Global' 
-            ? 'COVID-19 Global Dashboard' 
-            : `COVID-19 Dashboard: ${selectedCountry}`}
+            ? 'COVID-19 World Data Explorer (Global)' 
+            : `COVID-19 World Data Explorer: ${selectedCountry}`}
         </h1>
         
         {/* Country selector */}
@@ -189,7 +189,7 @@ function MainContent({ style }) {
         
         {/* COVID-19 Trend Chart */}
         <div className="chart-container">
-          <h3 className="chart-title">COVID-19 Daily Evolution - {selectedCountry}</h3>
+          <h3 className="chart-title">COVID-19 World Data Explorer - Daily Evolution: {selectedCountry}</h3>
           
           {!chartData && isDataLoading ? (
             <div className="chart-loading">Loading chart data...</div>

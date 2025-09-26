@@ -25,7 +25,7 @@ function Navbar() {
                 fontWeight: 'bold',
                 fontSize: '1.5rem'
               }}>
-                COVID-19 Dashboard
+                COVID-19 World Data Explorer
               </span>
             </div>
           </div>

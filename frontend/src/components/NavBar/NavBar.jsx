@@ -46,7 +46,7 @@ function NavBar() {
             <line x1="9" y1="9" x2="9.01" y2="9"></line>
             <line x1="15" y1="9" x2="15.01" y2="9"></line>
           </svg>
-          <span>COVID-19 DataViz</span>
+          <span>COVID-19 World Data Explorer</span>
         </div>
 
         <nav className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
