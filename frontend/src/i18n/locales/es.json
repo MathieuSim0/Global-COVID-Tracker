@@ -28,16 +28,25 @@
     "criticalCases": "Casos Críticos",
     "dailyNewCases": "Nuevos Casos Diarios",
     "dailyNewDeaths": "Nuevas Muertes Diarias",
-    "viewTrends": "Ver Tendencias"
+    "viewTrends": "Ver Tendencias",
+    "new": "nuevo",
+    "titleGlobal": "Explorador de Datos COVID-19 (Global)",
+    "titleCountry": "Explorador de Datos COVID-19: {{country}}",
+    "loadingData": "Cargando datos del país...",
+    "dataError": "Error al cargar datos"
   },
   "countries": {
     "searchPlaceholder": "Buscar países...",
     "sortBy": "Ordenar por",
     "filter": "Filtrar",
-    "noResults": "Ningún país coincide con tu búsqueda",
+    "noResults": "No se encontraron países",
     "population": "Población",
     "allCountries": "Todos los Países",
-    "mostAffected": "Países Más Afectados"
+    "mostAffected": "Países Más Afectados",
+    "loading": "Cargando países...",
+    "error": "Error al cargar países",
+    "selectRegion": "Seleccionar una región:",
+    "searchAriaLabel": "Buscar un país"
   },
   "charts": {
     "linearScale": "Escala Lineal",
@@ -48,7 +57,14 @@
     "perCapita": "Per Cápita",
     "absolute": "Números Absolutos",
     "movingAverage": "Media Móvil de 7 días",
-    "predictions": "Predicciones"
+    "predictions": "Predicciones",
+    "title": "Explorador de Datos COVID-19 - Evolución Diaria: {{country}}",
+    "loading": "Cargando datos del gráfico...",
+    "noData": "No hay datos de series temporales disponibles para {{country}}",
+    "confirmed": "Confirmados",
+    "deaths": "Fallecidos",
+    "recovered": "Recuperados",
+    "all": "Todos"
   },
   "filters": {
     "timeRange": "Período de Tiempo",
@@ -64,7 +80,9 @@
     "resetZoom": "Restablecer zoom",
     "viewDetails": "Ver detalles del país",
     "colorBy": "Colorear por",
-    "tooltipTitle": "Datos COVID-19 para {{country}}"
+    "tooltipTitle": "Datos COVID-19 para {{country}}",
+    "loading": "Cargando datos del mapa...",
+    "error": "Error"
   },
   "about": {
     "title": "Acerca de Este Proyecto",

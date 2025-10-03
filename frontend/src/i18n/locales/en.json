@@ -28,16 +28,25 @@
     "criticalCases": "Critical Cases",
     "dailyNewCases": "Daily New Cases",
     "dailyNewDeaths": "Daily New Deaths",
-    "viewTrends": "View Trends"
+    "viewTrends": "View Trends",
+    "new": "new",
+    "titleGlobal": "COVID-19 World Data Explorer (Global)",
+    "titleCountry": "COVID-19 World Data Explorer: {{country}}",
+    "loadingData": "Loading country data...",
+    "dataError": "Error loading data"
   },
   "countries": {
     "searchPlaceholder": "Search countries...",
     "sortBy": "Sort by",
     "filter": "Filter",
-    "noResults": "No countries match your search",
+    "noResults": "No countries found",
     "population": "Population",
     "allCountries": "All Countries",
-    "mostAffected": "Most Affected Countries"
+    "mostAffected": "Most Affected Countries",
+    "loading": "Loading countries...",
+    "error": "Failed to load countries",
+    "selectRegion": "Select a region:",
+    "searchAriaLabel": "Search for a country"
   },
   "charts": {
     "linearScale": "Linear Scale",
@@ -48,7 +57,14 @@
     "perCapita": "Per Capita",
     "absolute": "Absolute Numbers",
     "movingAverage": "7-day Moving Average",
-    "predictions": "Predictions"
+    "predictions": "Predictions",
+    "title": "COVID-19 World Data Explorer - Daily Evolution: {{country}}",
+    "loading": "Loading chart data...",
+    "noData": "No time series data available for {{country}}",
+    "confirmed": "Confirmed",
+    "deaths": "Deaths",
+    "recovered": "Recovered",
+    "all": "All"
   },
   "filters": {
     "timeRange": "Time Range",
@@ -64,7 +80,9 @@
     "resetZoom": "Reset zoom",
     "viewDetails": "View country details",
     "colorBy": "Color by",
-    "tooltipTitle": "COVID-19 Data for {{country}}"
+    "tooltipTitle": "COVID-19 Data for {{country}}",
+    "loading": "Loading map data...",
+    "error": "Error"
   },
   "about": {
     "title": "About This Project",

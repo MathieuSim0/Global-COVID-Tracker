@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-le
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -18,6 +19,7 @@ function FlyToCountry({ countryStats, selectedCountry }) {
 }
 
 const MapView = ({ onCountrySelect, selectedCountry }) => {
+  const { t } = useTranslation();
   const [countryStats, setCountryStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -76,9 +78,9 @@ const MapView = ({ onCountrySelect, selectedCountry }) => {
               >
                 <Popup>
                   <strong>{c.country}</strong><br />
-                  Confirmed: {c.confirmed.toLocaleString()}<br />
-                  Deaths: {c.deaths.toLocaleString()}<br />
-                  Recovered: {c.recovered.toLocaleString()}
+                  {t('dashboard.totalCases', 'Confirmed')}: {c.confirmed.toLocaleString()}<br />
+                  {t('dashboard.deaths', 'Deaths')}: {c.deaths.toLocaleString()}<br />
+                  {t('dashboard.recovered', 'Recovered')}: {c.recovered.toLocaleString()}
                 </Popup>
               </Marker>
               <Circle
@@ -90,8 +92,8 @@ const MapView = ({ onCountrySelect, selectedCountry }) => {
           ) : null
         ))}
       </MapContainer>
-      {loading && <div style={{position:'absolute',top:10,left:10,background:'#fff',padding:'4px 8px',borderRadius:'4px',boxShadow:'0 1px 4px #0002'}}>Loading map data...</div>}
-      {error && <div style={{position:'absolute',top:10,left:10,background:'#fff',padding:'4px 8px',borderRadius:'4px',color:'red',boxShadow:'0 1px 4px #0002'}}>Error: {error}</div>}
+      {loading && <div style={{position:'absolute',top:10,left:10,background:'#fff',padding:'4px 8px',borderRadius:'4px',boxShadow:'0 1px 4px #0002'}}>{t('map.loading', 'Loading map data...')}</div>}
+      {error && <div style={{position:'absolute',top:10,left:10,background:'#fff',padding:'4px 8px',borderRadius:'4px',color:'red',boxShadow:'0 1px 4px #0002'}}>{t('map.error', 'Error')}: {error}</div>}
     </div>
   );
 };

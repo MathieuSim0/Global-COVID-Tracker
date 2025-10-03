@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './MainContent.css';
 import CountrySelector from '../CountrySelector';
 import { fetchCountries, fetchCountryData, formatNumber, extractChartData, mergeTimeseries } from '../../utils/dataUtils';
@@ -6,6 +7,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import MapView from '../MapView';
 
 function MainContent({ style }) {
+  const { t } = useTranslation();
+  
   const [covidData, setCovidData] = useState({
     confirmed: 0,
     newConfirmed: 0,
@@ -109,8 +112,8 @@ function MainContent({ style }) {
         {/* Dashboard Title - Updates with selected country */}
         <h1 className="page-title">
           {selectedCountry === 'Global' 
-            ? 'COVID-19 World Data Explorer (Global)' 
-            : `COVID-19 World Data Explorer: ${selectedCountry}`}
+            ? t('dashboard.titleGlobal', 'COVID-19 World Data Explorer (Global)') 
+            : t('dashboard.titleCountry', 'COVID-19 World Data Explorer: {{country}}', { country: selectedCountry })}
         </h1>
         
         {/* Country selector */}
@@ -125,15 +128,15 @@ function MainContent({ style }) {
         {/* Stats cards */}
         <div className="stats-grid">
           {dataError && (!covidData || !covidData.confirmed) && (
-            <div className="data-error-message">{dataError}</div>
+            <div className="data-error-message">{t('dashboard.dataError', dataError)}</div>
           )}
           
           {isDataLoading ? (
-            <div className="data-loading">Loading country data...</div>
+            <div className="data-loading">{t('dashboard.loadingData', 'Loading country data...')}</div>
           ) : (
             <>
               <div className="card confirmed">
-                <h3>Confirmed</h3>
+                <h3>{t('dashboard.totalCases', 'Confirmed')}</h3>
                 <div className="stats-value">
                   {formatNumber(covidData.confirmed)}
                 </div>
@@ -141,12 +144,12 @@ function MainContent({ style }) {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7 14l5-5 5 5H7z"/>
                   </svg>
-                  <span>+{formatNumber(covidData.newConfirmed)} new</span>
+                  <span>+{formatNumber(covidData.newConfirmed)} {t('dashboard.new', 'new')}</span>
                 </div>
               </div>
               
               <div className="card active">
-                <h3>Active</h3>
+                <h3>{t('dashboard.activeCases', 'Active')}</h3>
                 <div className="stats-value">
                   {formatNumber(covidData.active)}
                 </div>
@@ -154,12 +157,12 @@ function MainContent({ style }) {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7 14l5-5 5 5H7z"/>
                   </svg>
-                  <span>+{formatNumber(covidData.newActive)} new</span>
+                  <span>+{formatNumber(covidData.newActive)} {t('dashboard.new', 'new')}</span>
                 </div>
               </div>
               
               <div className="card recovered">
-                <h3>Recovered</h3>
+                <h3>{t('dashboard.recovered', 'Recovered')}</h3>
                 <div className="stats-value">
                   {formatNumber(covidData.recovered)}
                 </div>
@@ -167,12 +170,12 @@ function MainContent({ style }) {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7 14l5-5 5 5H7z"/>
                   </svg>
-                  <span>+{formatNumber(covidData.newRecovered)} new</span>
+                  <span>+{formatNumber(covidData.newRecovered)} {t('dashboard.new', 'new')}</span>
                 </div>
               </div>
               
               <div className="card deaths">
-                <h3>Deaths</h3>
+                <h3>{t('dashboard.deaths', 'Deaths')}</h3>
                 <div className="stats-value">
                   {formatNumber(covidData.deaths)}
                 </div>
@@ -180,7 +183,7 @@ function MainContent({ style }) {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7 14l5-5 5 5H7z"/>
                   </svg>
-                  <span>+{formatNumber(covidData.newDeaths)} new</span>
+                  <span>+{formatNumber(covidData.newDeaths)} {t('dashboard.new', 'new')}</span>
                 </div>
               </div>
             </>
@@ -189,12 +192,12 @@ function MainContent({ style }) {
         
         {/* COVID-19 Trend Chart */}
         <div className="chart-container">
-          <h3 className="chart-title">COVID-19 World Data Explorer - Daily Evolution: {selectedCountry}</h3>
+          <h3 className="chart-title">{t('charts.title', 'COVID-19 World Data Explorer - Daily Evolution: {{country}}', { country: selectedCountry })}</h3>
           
           {!chartData && isDataLoading ? (
-            <div className="chart-loading">Loading chart data...</div>
+            <div className="chart-loading">{t('charts.loading', 'Loading chart data...')}</div>
           ) : !chartData ? (
-            <div className="chart-error">No time series data available for {selectedCountry}</div>
+            <div className="chart-error">{t('charts.noData', 'No time series data available for {{country}}', { country: selectedCountry })}</div>
           ) : (
             <div className="chart-wrapper">
               <div className="chart-controls">
@@ -202,25 +205,25 @@ function MainContent({ style }) {
                   className={`btn-chart ${chartType === 'confirmed' ? 'active' : ''}`}
                   onClick={() => handleChartTypeChange('confirmed')}
                 >
-                  Confirmed
+                  {t('charts.confirmed', 'Confirmed')}
                 </button>
                 <button 
                   className={`btn-chart ${chartType === 'deaths' ? 'active' : ''}`}
                   onClick={() => handleChartTypeChange('deaths')}
                 >
-                  Deaths
+                  {t('charts.deaths', 'Deaths')}
                 </button>
                 <button 
                   className={`btn-chart ${chartType === 'recovered' ? 'active' : ''}`}
                   onClick={() => handleChartTypeChange('recovered')}
                 >
-                  Recovered
+                  {t('charts.recovered', 'Recovered')}
                 </button>
                 <button 
                   className={`btn-chart ${chartType === 'all' ? 'active' : ''}`}
                   onClick={() => handleChartTypeChange('all')}
                 >
-                  All
+                  {t('charts.all', 'All')}
                 </button>
               </div>
               

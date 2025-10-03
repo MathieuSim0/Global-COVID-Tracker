@@ -28,16 +28,25 @@
     "criticalCases": "Cas Critiques",
     "dailyNewCases": "Nouveaux Cas Quotidiens",
     "dailyNewDeaths": "Nouveaux Décès Quotidiens",
-    "viewTrends": "Voir les Tendances"
+    "viewTrends": "Voir les Tendances",
+    "new": "nouveau",
+    "titleGlobal": "Explorateur de Données COVID-19 (Mondial)",
+    "titleCountry": "Explorateur de Données COVID-19: {{country}}",
+    "loadingData": "Chargement des données du pays...",
+    "dataError": "Erreur lors du chargement des données"
   },
   "countries": {
     "searchPlaceholder": "Rechercher des pays...",
     "sortBy": "Trier par",
     "filter": "Filtrer",
-    "noResults": "Aucun pays ne correspond à votre recherche",
+    "noResults": "Aucun pays trouvé",
     "population": "Population",
     "allCountries": "Tous les Pays",
-    "mostAffected": "Pays les Plus Touchés"
+    "mostAffected": "Pays les Plus Touchés",
+    "loading": "Chargement des pays...",
+    "error": "Échec du chargement des pays",
+    "selectRegion": "Sélectionner une région:",
+    "searchAriaLabel": "Rechercher un pays"
   },
   "charts": {
     "linearScale": "Échelle Linéaire",
@@ -48,7 +57,14 @@
     "perCapita": "Par Habitant",
     "absolute": "Chiffres Absolus",
     "movingAverage": "Moyenne Mobile sur 7 jours",
-    "predictions": "Prévisions"
+    "predictions": "Prévisions",
+    "title": "Explorateur de Données COVID-19 - Évolution Quotidienne: {{country}}",
+    "loading": "Chargement des données du graphique...",
+    "noData": "Aucune donnée chronologique disponible pour {{country}}",
+    "confirmed": "Confirmés",
+    "deaths": "Décès",
+    "recovered": "Rétablis",
+    "all": "Tous"
   },
   "filters": {
     "timeRange": "Période",
@@ -64,7 +80,9 @@
     "resetZoom": "Réinitialiser le zoom",
     "viewDetails": "Voir les détails du pays",
     "colorBy": "Colorer par",
-    "tooltipTitle": "Données COVID-19 pour {{country}}"
+    "tooltipTitle": "Données COVID-19 pour {{country}}",
+    "loading": "Chargement des données cartographiques...",
+    "error": "Erreur"
   },
   "about": {
     "title": "À Propos de ce Projet",

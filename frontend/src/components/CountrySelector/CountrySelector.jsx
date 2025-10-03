@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import './CountrySelector.css';
 
 /**
@@ -11,6 +12,7 @@ import './CountrySelector.css';
  * @param {string|null} props.error - Message d'erreur à afficher le cas échéant
  */
 function CountrySelector({ countries, selectedCountry, onSelectCountry, isLoading, error }) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCountries, setFilteredCountries] = useState([]);
@@ -70,17 +72,17 @@ function CountrySelector({ countries, selectedCountry, onSelectCountry, isLoadin
   };
 
   if (isLoading) {
-    return <div className="country-selector-loading">Chargement des pays...</div>;
+    return <div className="country-selector-loading">{t('countries.loading', 'Loading countries...')}</div>;
   }
 
   if (error) {
-    return <div className="country-selector-error">{error}</div>;
+    return <div className="country-selector-error">{t('countries.error', error)}</div>;
   }
 
   return (
     <div className="country-selector-container" ref={dropdownRef}>
       <div className="country-selector-header">
-        <h3>Sélectionner une région:</h3>
+        <h3>{t('countries.selectRegion', 'Select a region:')}</h3>
       </div>
       
       <div className="country-dropdown">
@@ -103,10 +105,10 @@ function CountrySelector({ countries, selectedCountry, onSelectCountry, isLoadin
                 ref={searchInputRef}
                 type="text"
                 className="country-search-input"
-                placeholder="Rechercher un pays..."
+                placeholder={t('countries.searchPlaceholder', 'Search countries...')}
                 value={searchTerm}
                 onChange={handleSearchChange}
-                aria-label="Rechercher un pays"
+                aria-label={t('countries.searchAriaLabel', 'Search for a country')}
               />
               <svg className="search-icon" viewBox="0 0 24 24">
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
@@ -132,7 +134,7 @@ function CountrySelector({ countries, selectedCountry, onSelectCountry, isLoadin
                     </li>
                   ))
                 ) : (
-                  <li className="country-list-item no-results">Aucun pays trouvé</li>
+                  <li className="country-list-item no-results">{t('countries.noResults', 'No countries found')}</li>
                 )}
               </ul>
             </div>
