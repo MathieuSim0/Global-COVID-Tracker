@@ -1,14 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import './NavBar.css';
 
 function NavBar() {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState('light');
   
-  // Thèmes disponibles
+  // Available themes
   const themes = [
-    { name: 'light', label: 'Mode clair', icon: 'sun' },
-    { name: 'dark', label: 'Mode sombre', icon: 'moon' }
+    { name: 'light', label: t('theme.light', 'Light Mode'), icon: 'sun' },
+    { name: 'dark', label: t('theme.dark', 'Dark Mode'), icon: 'moon' }
   ];
 
   // Fonction pour changer de thème
@@ -46,26 +48,26 @@ function NavBar() {
             <line x1="9" y1="9" x2="9.01" y2="9"></line>
             <line x1="15" y1="9" x2="15.01" y2="9"></line>
           </svg>
-          <span>COVID-19 World Data Explorer</span>
+          <span>{t('app.title', 'COVID-19 World Data Explorer')}</span>
         </div>
 
         <nav className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <ul>
-            <li className="active"><a href="/">Global Dashboard</a></li>
-            <li><a href="/countries">Countries</a></li>
-            <li><a href="/trends">Trends</a></li>
-            <li><a href="/map">Map</a></li>
-            <li><a href="/about">About</a></li>
+            <li className="active"><a href="/">{t('navigation.globalDashboard', 'Global Dashboard')}</a></li>
+            <li><a href="/countries">{t('navigation.countries', 'Countries')}</a></li>
+            <li><a href="/trends">{t('navigation.trends', 'Trends')}</a></li>
+            <li><a href="/map">{t('navigation.map', 'Map')}</a></li>
+            <li><a href="/about">{t('navigation.about', 'About')}</a></li>
           </ul>
           
           {/* Sélecteur de thème avec interrupteur à glissière */}
           <div className="theme-toggle">
-            <label className="theme-toggle-switch" title={currentTheme === 'light' ? 'Passer au mode sombre' : 'Passer au mode clair'}>
+            <label className="theme-toggle-switch" title={currentTheme === 'light' ? t('theme.switchToDark', 'Switch to dark mode') : t('theme.switchToLight', 'Switch to light mode')}>
               <input 
                 type="checkbox" 
                 checked={currentTheme === 'dark'}
                 onChange={() => changeTheme(currentTheme === 'light' ? 'dark' : 'light')}
-                aria-label={currentTheme === 'light' ? 'Activer le mode sombre' : 'Activer le mode clair'}
+                aria-label={currentTheme === 'light' ? t('theme.enableDark', 'Enable dark mode') : t('theme.enableLight', 'Enable light mode')}
               />
               <span className="theme-toggle-slider">
                 {/* Icône soleil (côté gauche) */}

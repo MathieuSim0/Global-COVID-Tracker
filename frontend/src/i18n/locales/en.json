@@ -1,0 +1,35 @@
+{
+  "app": {
+    "title": "COVID-19 World Data Explorer",
+    "navigation": {
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "about": "About"
+    }
+  },
+  "footer": {
+    "appName": "COVID-19 DataViz",
+    "description": "Global visualization of COVID-19 pandemic data",
+    "dataSources": "Data Sources",
+    "jhuCsse": "John Hopkins University CSSE",
+    "whoReports": "WHO Reports",
+    "quickLinks": "Quick Links",
+    "copyright": "COVID-19 DataViz",
+    "rights": "All rights reserved"
+  },
+  "navigation": {
+    "globalDashboard": "Global Dashboard",
+    "countries": "Countries",
+    "trends": "Trends",
+    "map": "Map",
+    "about": "About"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "enableLight": "Enable light mode",
+    "enableDark": "Enable dark mode"
+  }
+}

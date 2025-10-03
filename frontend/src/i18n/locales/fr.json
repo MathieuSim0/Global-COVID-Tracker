@@ -1,0 +1,35 @@
+{
+  "app": {
+    "title": "Explorateur de Données COVID-19",
+    "navigation": {
+      "home": "Accueil",
+      "dashboard": "Tableau de Bord",
+      "about": "À Propos"
+    }
+  },
+  "footer": {
+    "appName": "Visualisation des Données COVID-19",
+    "description": "Visualisation globale des données de la pandémie COVID-19",
+    "dataSources": "Sources de Données",
+    "jhuCsse": "Université John Hopkins CSSE",
+    "whoReports": "Rapports de l'OMS",
+    "quickLinks": "Liens Rapides",
+    "copyright": "Visualisation des Données COVID-19",
+    "rights": "Tous droits réservés"
+  },
+  "navigation": {
+    "globalDashboard": "Tableau de Bord Mondial",
+    "countries": "Pays",
+    "trends": "Tendances",
+    "map": "Carte",
+    "about": "À Propos"
+  },
+  "theme": {
+    "light": "Mode Clair",
+    "dark": "Mode Sombre",
+    "switchToLight": "Passer au mode clair",
+    "switchToDark": "Passer au mode sombre",
+    "enableLight": "Activer le mode clair",
+    "enableDark": "Activer le mode sombre"
+  }
+}
