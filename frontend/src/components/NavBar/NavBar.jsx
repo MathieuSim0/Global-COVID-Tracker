@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../LanguageSwitcher';
 import './NavBar.css';
+import './NavControls.css';
 
 function NavBar() {
   const { t } = useTranslation();
@@ -60,15 +62,19 @@ function NavBar() {
             <li><a href="/about">{t('navigation.about', 'About')}</a></li>
           </ul>
           
-          {/* Sélecteur de thème avec interrupteur à glissière */}
-          <div className="theme-toggle">
-            <label className="theme-toggle-switch" title={currentTheme === 'light' ? t('theme.switchToDark', 'Switch to dark mode') : t('theme.switchToLight', 'Switch to light mode')}>
-              <input 
-                type="checkbox" 
-                checked={currentTheme === 'dark'}
-                onChange={() => changeTheme(currentTheme === 'light' ? 'dark' : 'light')}
-                aria-label={currentTheme === 'light' ? t('theme.enableDark', 'Enable dark mode') : t('theme.enableLight', 'Enable light mode')}
-              />
+          {/* Language Switcher and Theme Toggle */}
+          <div className="nav-controls">
+            <LanguageSwitcher variant="dropdown" />
+            
+            {/* Sélecteur de thème avec interrupteur à glissière */}
+            <div className="theme-toggle">
+              <label className="theme-toggle-switch" title={currentTheme === 'light' ? t('theme.switchToDark', 'Switch to dark mode') : t('theme.switchToLight', 'Switch to light mode')}>
+                <input 
+                  type="checkbox" 
+                  checked={currentTheme === 'dark'}
+                  onChange={() => changeTheme(currentTheme === 'light' ? 'dark' : 'light')}
+                  aria-label={currentTheme === 'light' ? t('theme.enableDark', 'Enable dark mode') : t('theme.enableLight', 'Enable light mode')}
+                />
               <span className="theme-toggle-slider">
                 {/* Icône soleil (côté gauche) */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="theme-icon-sun">
@@ -88,6 +94,7 @@ function NavBar() {
               </span>
             </label>
           </div>
+          </div> {/* Closing tag for nav-controls */}
         </nav>
 
         <button className="mobile-menu-button" onClick={toggleMenu}>
