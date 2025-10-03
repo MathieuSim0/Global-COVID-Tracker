@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "Explorador de Datos COVID-19",
+    "subtitle": "Seguimiento de la pandemia global",
+    "loading": "Cargando datos...",
+    "error": "Error al cargar datos",
+    "lastUpdated": "Última actualización: {{date}}"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "globalDashboard": "Panel Global",
+    "countries": "Países",
+    "trends": "Tendencias",
+    "map": "Mapa",
+    "about": "Acerca de",
+    "settings": "Configuración",
+    "language": "Idioma"
+  },
+  "dashboard": {
+    "globalStats": "Estadísticas Globales",
+    "totalCases": "Casos Totales",
+    "activeCases": "Casos Activos",
+    "recovered": "Recuperados",
+    "deaths": "Fallecidos",
+    "casesPerMillion": "Casos por Millón",
+    "deathsPerMillion": "Muertes por Millón",
+    "testsPerMillion": "Pruebas por Millón",
+    "criticalCases": "Casos Críticos",
+    "dailyNewCases": "Nuevos Casos Diarios",
+    "dailyNewDeaths": "Nuevas Muertes Diarias",
+    "viewTrends": "Ver Tendencias"
+  },
+  "countries": {
+    "searchPlaceholder": "Buscar países...",
+    "sortBy": "Ordenar por",
+    "filter": "Filtrar",
+    "noResults": "Ningún país coincide con tu búsqueda",
+    "population": "Población",
+    "allCountries": "Todos los Países",
+    "mostAffected": "Países Más Afectados"
+  },
+  "charts": {
+    "linearScale": "Escala Lineal",
+    "logScale": "Escala Logarítmica",
+    "timeline": "Cronología",
+    "daily": "Diario",
+    "cumulative": "Acumulativo",
+    "perCapita": "Per Cápita",
+    "absolute": "Números Absolutos",
+    "movingAverage": "Media Móvil de 7 días",
+    "predictions": "Predicciones"
+  },
+  "filters": {
+    "timeRange": "Período de Tiempo",
+    "last7Days": "Últimos 7 días",
+    "last30Days": "Últimos 30 días",
+    "last90Days": "Últimos 90 días",
+    "allTime": "Todo el tiempo",
+    "custom": "Rango personalizado"
+  },
+  "map": {
+    "legend": "Leyenda",
+    "zoom": "Ampliar",
+    "resetZoom": "Restablecer zoom",
+    "viewDetails": "Ver detalles del país",
+    "colorBy": "Colorear por",
+    "tooltipTitle": "Datos COVID-19 para {{country}}"
+  },
+  "about": {
+    "title": "Acerca de Este Proyecto",
+    "description": "Este panel visualiza datos de COVID-19 recopilados de varias fuentes confiables en todo el mundo.",
+    "dataSource": "Fuentes de Datos",
+    "methodology": "Metodología",
+    "contact": "Contáctenos",
+    "feedback": "Enviar Comentarios",
+    "disclaimer": "Descargo de responsabilidad: La información proporcionada es solo con fines educativos."
+  },
+  "footer": {
+    "appName": "Visualización de Datos COVID-19",
+    "description": "Visualización global de datos de la pandemia COVID-19",
+    "dataSources": "Fuentes de Datos",
+    "jhuCsse": "Universidad Johns Hopkins CSSE",
+    "whoReports": "Informes de la OMS",
+    "quickLinks": "Enlaces Rápidos",
+    "copyright": "Visualización de Datos COVID-19",
+    "rights": "Todos los derechos reservados",
+    "privacyPolicy": "Política de Privacidad",
+    "terms": "Términos de Uso"
+  },
+  "theme": {
+    "light": "Modo Claro",
+    "dark": "Modo Oscuro",
+    "switchToLight": "Cambiar a modo claro",
+    "switchToDark": "Cambiar a modo oscuro",
+    "enableLight": "Activar modo claro",
+    "enableDark": "Activar modo oscuro",
+    "auto": "Auto (preferencia del sistema)"
+  },
+  "common": {
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "weekAgo": "Hace 1 semana",
+    "monthAgo": "Hace 1 mes",
+    "download": "Descargar Datos",
+    "share": "Compartir",
+    "print": "Imprimir",
+    "close": "Cerrar",
+    "apply": "Aplicar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "selectAll": "Seleccionar Todo",
+    "deselectAll": "Deseleccionar Todo"
+  }
+}

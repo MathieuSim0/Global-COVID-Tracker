@@ -1,28 +1,91 @@
 {
   "app": {
     "title": "Explorateur de Données COVID-19",
-    "navigation": {
-      "home": "Accueil",
-      "dashboard": "Tableau de Bord",
-      "about": "À Propos"
-    }
+    "subtitle": "Suivi de la pandémie mondiale",
+    "loading": "Chargement des données...",
+    "error": "Erreur de chargement des données",
+    "lastUpdated": "Dernière mise à jour: {{date}}"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "globalDashboard": "Tableau de Bord Mondial",
+    "countries": "Pays",
+    "trends": "Tendances",
+    "map": "Carte",
+    "about": "À Propos",
+    "settings": "Paramètres",
+    "language": "Langue"
+  },
+  "dashboard": {
+    "globalStats": "Statistiques Mondiales",
+    "totalCases": "Cas Totaux",
+    "activeCases": "Cas Actifs",
+    "recovered": "Rétablis",
+    "deaths": "Décès",
+    "casesPerMillion": "Cas par Million",
+    "deathsPerMillion": "Décès par Million",
+    "testsPerMillion": "Tests par Million",
+    "criticalCases": "Cas Critiques",
+    "dailyNewCases": "Nouveaux Cas Quotidiens",
+    "dailyNewDeaths": "Nouveaux Décès Quotidiens",
+    "viewTrends": "Voir les Tendances"
+  },
+  "countries": {
+    "searchPlaceholder": "Rechercher des pays...",
+    "sortBy": "Trier par",
+    "filter": "Filtrer",
+    "noResults": "Aucun pays ne correspond à votre recherche",
+    "population": "Population",
+    "allCountries": "Tous les Pays",
+    "mostAffected": "Pays les Plus Touchés"
+  },
+  "charts": {
+    "linearScale": "Échelle Linéaire",
+    "logScale": "Échelle Logarithmique",
+    "timeline": "Chronologie",
+    "daily": "Quotidien",
+    "cumulative": "Cumulatif",
+    "perCapita": "Par Habitant",
+    "absolute": "Chiffres Absolus",
+    "movingAverage": "Moyenne Mobile sur 7 jours",
+    "predictions": "Prévisions"
+  },
+  "filters": {
+    "timeRange": "Période",
+    "last7Days": "7 derniers jours",
+    "last30Days": "30 derniers jours",
+    "last90Days": "90 derniers jours",
+    "allTime": "Depuis le début",
+    "custom": "Période personnalisée"
+  },
+  "map": {
+    "legend": "Légende",
+    "zoom": "Zoom",
+    "resetZoom": "Réinitialiser le zoom",
+    "viewDetails": "Voir les détails du pays",
+    "colorBy": "Colorer par",
+    "tooltipTitle": "Données COVID-19 pour {{country}}"
+  },
+  "about": {
+    "title": "À Propos de ce Projet",
+    "description": "Ce tableau de bord visualise les données COVID-19 collectées auprès de diverses sources fiables dans le monde entier.",
+    "dataSource": "Sources de Données",
+    "methodology": "Méthodologie",
+    "contact": "Contactez-Nous",
+    "feedback": "Envoyer des Commentaires",
+    "disclaimer": "Avertissement: Les informations fournies sont uniquement à des fins éducatives."
   },
   "footer": {
     "appName": "Visualisation des Données COVID-19",
     "description": "Visualisation globale des données de la pandémie COVID-19",
     "dataSources": "Sources de Données",
-    "jhuCsse": "Université John Hopkins CSSE",
+    "jhuCsse": "Université Johns Hopkins CSSE",
     "whoReports": "Rapports de l'OMS",
     "quickLinks": "Liens Rapides",
     "copyright": "Visualisation des Données COVID-19",
-    "rights": "Tous droits réservés"
-  },
-  "navigation": {
-    "globalDashboard": "Tableau de Bord Mondial",
-    "countries": "Pays",
-    "trends": "Tendances",
-    "map": "Carte",
-    "about": "À Propos"
+    "rights": "Tous droits réservés",
+    "privacyPolicy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation"
   },
   "theme": {
     "light": "Mode Clair",
@@ -30,6 +93,22 @@
     "switchToLight": "Passer au mode clair",
     "switchToDark": "Passer au mode sombre",
     "enableLight": "Activer le mode clair",
-    "enableDark": "Activer le mode sombre"
+    "enableDark": "Activer le mode sombre",
+    "auto": "Auto (préférence système)"
+  },
+  "common": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "weekAgo": "Il y a 1 semaine",
+    "monthAgo": "Il y a 1 mois",
+    "download": "Télécharger les Données",
+    "share": "Partager",
+    "print": "Imprimer",
+    "close": "Fermer",
+    "apply": "Appliquer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "selectAll": "Tout Sélectionner",
+    "deselectAll": "Tout Désélectionner"
   }
 }

@@ -20,9 +20,16 @@ const LanguageSwitcher = () => {
       <button 
         onClick={() => changeLanguage('fr')} 
         className={i18n.language === 'fr' ? 'active' : ''}
-        style={{ padding: '4px 8px', cursor: 'pointer' }}
+        style={{ marginRight: '5px', padding: '4px 8px', cursor: 'pointer' }}
       >
         FR
+      </button>
+      <button 
+        onClick={() => changeLanguage('es')} 
+        className={i18n.language === 'es' ? 'active' : ''}
+        style={{ padding: '4px 8px', cursor: 'pointer' }}
+      >
+        ES
       </button>
     </div>
   );
