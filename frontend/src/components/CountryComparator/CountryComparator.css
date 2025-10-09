@@ -1,0 +1,412 @@
+.country-comparator {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.country-comparator h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.country-comparator h2:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.country-selector-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.country-selector-container .label {
+  font-weight: 600;
+  margin-right: 12px;
+  color: var(--primary-color);
+}
+
+.country-selector {
+  min-width: 250px;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-light);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.country-selector:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+  outline: none;
+}
+
+.comparison-stats-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 30px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.comparison-stats-table th {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comparison-stats-table th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.comparison-stats-table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.comparison-stats-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.comparison-stats-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-stats-table tr:hover td {
+  background-color: var(--hover-color);
+}
+
+.comparison-stats-table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.comparison-stats-table .country-name {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.comparison-stats-table .confirmed {
+  color: var(--confirmed-color);
+  font-weight: 600;
+}
+
+.comparison-stats-table .deaths {
+  color: var(--deaths-color);
+  font-weight: 600;
+}
+
+.comparison-stats-table .recovered {
+  color: var(--recovered-color);
+  font-weight: 600;
+}
+
+.comparison-stats-table .active {
+  color: var(--active-color);
+  font-weight: 600;
+}
+
+.chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-chart {
+  padding: 10px 18px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-chart:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.btn-chart.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.btn-chart:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+}
+
+.chart-container {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.chart-title {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  position: relative;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 450px;
+  margin-top: 10px;
+  position: relative;
+}
+
+/* Custom styling for Recharts components */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--border-color);
+  stroke-opacity: 0.3;
+}
+
+.recharts-tooltip-wrapper {
+  filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+.recharts-default-tooltip {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  padding: 12px !important;
+}
+
+.recharts-legend-item-text {
+  color: var(--text-color) !important;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  background-color: var(--bg-light);
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.selected-country-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 30px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.selected-country-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  filter: brightness(1.05);
+}
+
+.remove-country {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  margin-left: 8px;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+  transition: all 0.2s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-country:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.remove-country:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.selected-countries {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+/* Messages d'état */
+.error-message {
+  padding: 15px 20px;
+  background-color: #fbe9e7;
+  color: #e53935;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border-left: 4px solid #e53935;
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.error-message::before {
+  content: "⚠";
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.loading-message {
+  padding: 15px 20px;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 2px 6px rgba(var(--primary-color-rgb), 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.loading-message::before {
+  content: "⟳";
+  margin-right: 10px;
+  font-size: 1.2rem;
+  display: inline-block;
+  animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .country-selector-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  
+  .country-selector {
+    width: 100%;
+  }
+  
+  .comparison-stats-table {
+    font-size: 0.9rem;
+  }
+  
+  .comparison-stats-table th, .comparison-stats-table td {
+    padding: 10px 12px;
+  }
+  
+  .chart-wrapper {
+    height: 350px;
+  }
+  
+  .btn-chart {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+  
+  .country-comparator h2 {
+    font-size: 1.6rem;
+  }
+  
+  .chart-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-wrapper {
+    height: 300px;
+  }
+  
+  .chart-container {
+    padding: 15px;
+  }
+  
+  .comparison-stats-table {
+    font-size: 0.8rem;
+  }
+  
+  .btn-chart {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}

@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import LanguageSwitcher from '../LanguageSwitcher';
 import './NavBar.css';
 import './NavControls.css';
 
-function NavBar() {
+function NavBar({ darkMode, toggleDarkMode }) {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState('light');
+  const [currentTheme, setCurrentTheme] = useState(darkMode ? 'dark' : 'light');
   const location = useLocation();
   
   // Available themes
@@ -30,13 +30,24 @@ function NavBar() {
     // Sauvegarder le thème dans le localStorage
     localStorage.setItem('covid-dashboard-theme', theme);
     setCurrentTheme(theme);
+    
+    // Si toggleDarkMode est fourni en prop, l'utiliser
+    if (toggleDarkMode) {
+      toggleDarkMode();
+    }
   };
   
   // Charger le thème sauvegardé lors du chargement initial
   useEffect(() => {
-    const savedTheme = localStorage.getItem('covid-dashboard-theme') || 'light';
-    changeTheme(savedTheme);
-  }, []);
+    if (toggleDarkMode === undefined) {
+      // Si toggleDarkMode n'est pas fourni, utiliser la logique locale
+      const savedTheme = localStorage.getItem('covid-dashboard-theme') || 'light';
+      changeTheme(savedTheme);
+    } else {
+      // Sinon, utiliser la prop darkMode
+      setCurrentTheme(darkMode ? 'dark' : 'light');
+    }
+  }, [darkMode, toggleDarkMode]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -57,11 +68,12 @@ function NavBar() {
 
         <nav className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <ul>
-            <li className={location.pathname === '/' ? 'active' : ''}><a href="/">{t('navigation.globalDashboard', 'Global Dashboard')}</a></li>
-            <li className={location.pathname === '/countries' ? 'active' : ''}><a href="/countries">{t('navigation.countries', 'Countries')}</a></li>
-            <li className={location.pathname === '/trends' ? 'active' : ''}><a href="/trends">{t('navigation.trends', 'Trends')}</a></li>
-            <li className={location.pathname === '/map' ? 'active' : ''}><a href="/map">{t('navigation.map', 'Map')}</a></li>
-            <li className={location.pathname === '/about' ? 'active' : ''}><a href="/about">{t('navigation.about', 'About')}</a></li>
+            <li className={location.pathname === '/' ? 'active' : ''}><Link to="/">{t('navigation.globalDashboard', 'Global Dashboard')}</Link></li>
+            <li className={location.pathname === '/countries' ? 'active' : ''}><Link to="/countries">{t('navigation.countries', 'Countries')}</Link></li>
+            <li className={location.pathname === '/compare' ? 'active' : ''}><Link to="/compare">{t('navigation.compare', 'Compare')}</Link></li>
+            <li className={location.pathname === '/trends' ? 'active' : ''}><Link to="/trends">{t('navigation.trends', 'Trends')}</Link></li>
+            <li className={location.pathname === '/map' ? 'active' : ''}><Link to="/map">{t('navigation.map', 'Map')}</Link></li>
+            <li className={location.pathname === '/about' ? 'active' : ''}><Link to="/about">{t('navigation.about', 'About')}</Link></li>
           </ul>
           
           {/* Language Switcher and Theme Toggle */}
@@ -74,7 +86,13 @@ function NavBar() {
                 <input 
                   type="checkbox" 
                   checked={currentTheme === 'dark'}
-                  onChange={() => changeTheme(currentTheme === 'light' ? 'dark' : 'light')}
+                  onChange={() => {
+                    if (toggleDarkMode) {
+                      toggleDarkMode();
+                    } else {
+                      changeTheme(currentTheme === 'light' ? 'dark' : 'light');
+                    }
+                  }}
                   aria-label={currentTheme === 'light' ? t('theme.enableDark', 'Enable dark mode') : t('theme.enableLight', 'Enable light mode')}
                 />
               <span className="theme-toggle-slider">
