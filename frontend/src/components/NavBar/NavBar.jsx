@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import LanguageSwitcher from '../LanguageSwitcher';
 import './NavBar.css';
 import './NavControls.css';
@@ -8,6 +9,7 @@ function NavBar() {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState('light');
+  const location = useLocation();
   
   // Available themes
   const themes = [
@@ -55,11 +57,11 @@ function NavBar() {
 
         <nav className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <ul>
-            <li className="active"><a href="/">{t('navigation.globalDashboard', 'Global Dashboard')}</a></li>
-            <li><a href="/countries">{t('navigation.countries', 'Countries')}</a></li>
-            <li><a href="/trends">{t('navigation.trends', 'Trends')}</a></li>
-            <li><a href="/map">{t('navigation.map', 'Map')}</a></li>
-            <li><a href="/about">{t('navigation.about', 'About')}</a></li>
+            <li className={location.pathname === '/' ? 'active' : ''}><a href="/">{t('navigation.globalDashboard', 'Global Dashboard')}</a></li>
+            <li className={location.pathname === '/countries' ? 'active' : ''}><a href="/countries">{t('navigation.countries', 'Countries')}</a></li>
+            <li className={location.pathname === '/trends' ? 'active' : ''}><a href="/trends">{t('navigation.trends', 'Trends')}</a></li>
+            <li className={location.pathname === '/map' ? 'active' : ''}><a href="/map">{t('navigation.map', 'Map')}</a></li>
+            <li className={location.pathname === '/about' ? 'active' : ''}><a href="/about">{t('navigation.about', 'About')}</a></li>
           </ul>
           
           {/* Language Switcher and Theme Toggle */}
