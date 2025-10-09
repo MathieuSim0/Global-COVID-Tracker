@@ -71,6 +71,7 @@ function NavBar({ darkMode, toggleDarkMode }) {
             <li className={location.pathname === '/' ? 'active' : ''}><Link to="/">{t('navigation.globalDashboard', 'Global Dashboard')}</Link></li>
             <li className={location.pathname === '/countries' ? 'active' : ''}><Link to="/countries">{t('navigation.countries', 'Countries')}</Link></li>
             <li className={location.pathname === '/compare' ? 'active' : ''}><Link to="/compare">{t('navigation.compare', 'Compare')}</Link></li>
+            <li className={location.pathname === '/ranking' ? 'active' : ''}><Link to="/ranking">{t('navigation.ranking', 'Rankings')}</Link></li>
             <li className={location.pathname === '/trends' ? 'active' : ''}><Link to="/trends">{t('navigation.trends', 'Trends')}</Link></li>
             <li className={location.pathname === '/map' ? 'active' : ''}><Link to="/map">{t('navigation.map', 'Map')}</Link></li>
             <li className={location.pathname === '/about' ? 'active' : ''}><Link to="/about">{t('navigation.about', 'About')}</Link></li>

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from '../App.jsx';
 import CompareCountriesPage from '../pages/CompareCountriesPage';
+import RankingPage from '../pages/RankingPage';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer';
 import { useState, useEffect } from 'react';
@@ -42,6 +43,7 @@ export default function AppRoutes() {
           <Route path="/" element={<App skipNavbar={true} />} />
           <Route path="/map" element={<App skipNavbar={true} />} />
           <Route path="/compare" element={<CompareCountriesPage skipNavbar={true} />} />
+          <Route path="/ranking" element={<RankingPage skipNavbar={true} />} />
           <Route path="*" element={<App skipNavbar={true} />} />
         </Routes>
         <Footer />

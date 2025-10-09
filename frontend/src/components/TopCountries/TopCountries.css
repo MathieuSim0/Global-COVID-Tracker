@@ -1,0 +1,269 @@
+.top-countries-container {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.top-countries-title {
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.top-countries-title:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* Contrôles de tri */
+.sort-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.sort-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 8px;
+}
+
+.sort-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sort-button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.sort-button:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-1px);
+}
+
+.sort-button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.sort-button.active[data-sort="deaths"] {
+  background-color: var(--deaths-color);
+  border-color: var(--deaths-color);
+}
+
+.sort-button.active[data-sort="recovered"] {
+  background-color: var(--recovered-color);
+  border-color: var(--recovered-color);
+}
+
+.sort-button.active[data-sort="active"] {
+  background-color: var(--active-color);
+  border-color: var(--active-color);
+}
+
+/* Tableau des pays */
+.top-countries-table-container {
+  margin-bottom: 30px;
+  overflow-x: auto;
+}
+
+.top-countries-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top-countries-table th {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+}
+
+.top-countries-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.top-countries-table tr:last-child td {
+  border-bottom: none;
+}
+
+.top-countries-table tr:hover td {
+  background-color: var(--hover-color);
+}
+
+.top-countries-table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.rank-column {
+  width: 60px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.country-column {
+  min-width: 180px;
+}
+
+.value-column {
+  text-align: right;
+  min-width: 120px;
+}
+
+.country-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.country-flag {
+  width: 30px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.flag-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+.country-name {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.value {
+  font-weight: 700;
+}
+
+.value.confirmed {
+  color: var(--confirmed-color);
+}
+
+.value.deaths {
+  color: var(--deaths-color);
+}
+
+.value.recovered {
+  color: var(--recovered-color);
+}
+
+.value.active {
+  color: var(--active-color);
+}
+
+/* Graphique à barres */
+.chart-container {
+  margin-top: 30px;
+}
+
+.chart-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.bar-chart-wrapper {
+  height: 300px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
+
+/* Indicateurs d'état */
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+  color: var(--primary-color);
+  font-style: italic;
+}
+
+.error-message {
+  padding: 15px 20px;
+  background-color: #fbe9e7;
+  color: #e53935;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border-left: 4px solid #e53935;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  .top-countries-container {
+    padding: 18px;
+  }
+  
+  .sort-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sort-buttons {
+    width: 100%;
+  }
+  
+  .bar-chart-wrapper {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-countries-title {
+    font-size: 1.4rem;
+  }
+  
+  .sort-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .top-countries-table th,
+  .top-countries-table td {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .bar-chart-wrapper {
+    height: 200px;
+  }
+}

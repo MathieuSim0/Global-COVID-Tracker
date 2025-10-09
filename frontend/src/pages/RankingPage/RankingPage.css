@@ -1,0 +1,82 @@
+.ranking-page {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  min-height: calc(100vh - 80px);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-title {
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  font-size: 2.2rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.page-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.page-description {
+  margin-bottom: 35px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.ranking-info-box {
+  margin-top: 40px;
+  padding: 20px 24px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-info-box h3 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.ranking-info-box p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.ranking-info-box p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .ranking-page {
+    padding: 15px;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .page-description {
+    font-size: 1rem;
+  }
+}
