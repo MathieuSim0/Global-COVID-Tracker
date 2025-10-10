@@ -1,6 +1,5 @@
 {
   "app": {
-    "title": "Explorador de Datos COVID-19",
     "subtitle": "Seguimiento de la pandemia global",
     "loading": "Cargando datos...",
     "error": "Error al cargar datos",
