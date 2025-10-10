@@ -112,8 +112,8 @@ function MainContent({ style }) {
         {/* Dashboard Title - Updates with selected country */}
         <h1 className="page-title">
           {selectedCountry === 'Global' 
-            ? t('dashboard.titleGlobal', 'COVID-19 World Data Explorer (Global)') 
-            : t('dashboard.titleCountry', 'COVID-19 World Data Explorer: {{country}}', { country: selectedCountry })}
+            ? t('dashboard.titleGlobal', 'Global Dashboard') 
+            : t('dashboard.titleCountry', '{{country}}', { country: selectedCountry })}
         </h1>
         
         {/* Country selector */}
@@ -192,7 +192,7 @@ function MainContent({ style }) {
         
         {/* COVID-19 Trend Chart */}
         <div className="chart-container">
-          <h3 className="chart-title">{t('charts.title', 'COVID-19 World Data Explorer - Daily Evolution: {{country}}', { country: selectedCountry })}</h3>
+          <h3 className="chart-title">{t('charts.title', 'Daily Evolution: {{country}}', { country: selectedCountry })}</h3>
           
           {!chartData && isDataLoading ? (
             <div className="chart-loading">{t('charts.loading', 'Loading chart data...')}</div>

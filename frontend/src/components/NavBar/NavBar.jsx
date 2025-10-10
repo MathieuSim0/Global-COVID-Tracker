@@ -11,40 +11,31 @@ function NavBar({ darkMode, toggleDarkMode }) {
   const [currentTheme, setCurrentTheme] = useState(darkMode ? 'dark' : 'light');
   const location = useLocation();
   
-  // Available themes
   const themes = [
     { name: 'light', label: t('theme.light', 'Light Mode'), icon: 'sun' },
     { name: 'dark', label: t('theme.dark', 'Dark Mode'), icon: 'moon' }
   ];
 
-  // Fonction pour changer de thème
   const changeTheme = (theme) => {
-    // Supprimer les classes de thème précédentes
     document.documentElement.classList.remove('theme-dark');
     
-    // Ajouter la nouvelle classe de thème si ce n'est pas le thème par défaut (clair)
     if (theme === 'dark') {
       document.documentElement.classList.add('theme-dark');
     }
     
-    // Sauvegarder le thème dans le localStorage
     localStorage.setItem('covid-dashboard-theme', theme);
     setCurrentTheme(theme);
     
-    // Si toggleDarkMode est fourni en prop, l'utiliser
     if (toggleDarkMode) {
       toggleDarkMode();
     }
   };
   
-  // Charger le thème sauvegardé lors du chargement initial
   useEffect(() => {
     if (toggleDarkMode === undefined) {
-      // Si toggleDarkMode n'est pas fourni, utiliser la logique locale
       const savedTheme = localStorage.getItem('covid-dashboard-theme') || 'light';
       changeTheme(savedTheme);
     } else {
-      // Sinon, utiliser la prop darkMode
       setCurrentTheme(darkMode ? 'dark' : 'light');
     }
   }, [darkMode, toggleDarkMode]);
@@ -54,7 +45,7 @@ function NavBar({ darkMode, toggleDarkMode }) {
   };
 
   return (
-    <header className="navbar">
+    <header className="navbar" style={{ width: '100%' }}>
       <div className="navbar-container">
         <div className="navbar-logo">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="logo-icon">
@@ -63,18 +54,15 @@ function NavBar({ darkMode, toggleDarkMode }) {
             <line x1="9" y1="9" x2="9.01" y2="9"></line>
             <line x1="15" y1="9" x2="15.01" y2="9"></line>
           </svg>
-          <span>{t('app.title', 'COVID-19 World Data Explorer')}</span>
+          <span>{t('app.title', '')}</span>
         </div>
 
         <nav className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <ul>
             <li className={location.pathname === '/' ? 'active' : ''}><Link to="/">{t('navigation.globalDashboard', 'Global Dashboard')}</Link></li>
-            <li className={location.pathname === '/countries' ? 'active' : ''}><Link to="/countries">{t('navigation.countries', 'Countries')}</Link></li>
             <li className={location.pathname === '/compare' ? 'active' : ''}><Link to="/compare">{t('navigation.compare', 'Compare')}</Link></li>
             <li className={location.pathname === '/ranking' ? 'active' : ''}><Link to="/ranking">{t('navigation.ranking', 'Rankings')}</Link></li>
-            <li className={location.pathname === '/trends' ? 'active' : ''}><Link to="/trends">{t('navigation.trends', 'Trends')}</Link></li>
             <li className={location.pathname === '/map' ? 'active' : ''}><Link to="/map">{t('navigation.map', 'Map')}</Link></li>
-            <li className={location.pathname === '/about' ? 'active' : ''}><Link to="/about">{t('navigation.about', 'About')}</Link></li>
           </ul>
           
           {/* Language Switcher and Theme Toggle */}

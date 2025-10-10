@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "COVID-19 World Data Explorer",
+    "title": "",
     "subtitle": "Tracking the global pandemic",
     "loading": "Loading data...",
     "error": "Error loading data",
@@ -30,8 +30,8 @@
     "dailyNewDeaths": "Daily New Deaths",
     "viewTrends": "View Trends",
     "new": "new",
-    "titleGlobal": "COVID-19 World Data Explorer (Global)",
-    "titleCountry": "COVID-19 World Data Explorer: {{country}}",
+    "titleGlobal": "Global Dashboard",
+    "titleCountry": "{{country}}",
     "loadingData": "Loading country data...",
     "dataError": "Error loading data"
   },
@@ -58,7 +58,7 @@
     "absolute": "Absolute Numbers",
     "movingAverage": "7-day Moving Average",
     "predictions": "Predictions",
-    "title": "COVID-19 World Data Explorer - Daily Evolution: {{country}}",
+    "title": "Daily Evolution: {{country}}",
     "loading": "Loading chart data...",
     "noData": "No time series data available for {{country}}",
     "confirmed": "Confirmed",
