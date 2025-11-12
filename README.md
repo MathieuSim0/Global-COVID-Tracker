@@ -1,4 +1,4 @@
-# COVID-19 World Data Explorer
+# Global COVID Tracker
 
 Ce projet est un tableau de bord interactif pour visualiser les données mondiales du COVID-19, avec une carte, des graphiques, et des statistiques par pays.
 
@@ -64,3 +64,4 @@ Covid-19-DataViz/
 
 ## Aide
 Pour toute question ou problème, ouvrez une issue sur le dépôt ou contactez le mainteneur.
+
